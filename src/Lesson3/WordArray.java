@@ -1,14 +1,12 @@
 package Lesson3;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class WordArray {
     public static void main(String[] args) {
-        HashMap<String, Integer> repetition = new HashMap<>();
-        String repWord;
-        int count = 0;
+
+        Map<String, Integer> repetition = new LinkedHashMap<>();
+        Integer repWord;
         List<String> words = new ArrayList<>();
         words.add("Кот");
         words.add("Собака");
@@ -26,22 +24,16 @@ public class WordArray {
         words.add("Собака");
         words.add("Валенок");
         words.add("Кот");
-        List<String> words1 = new ArrayList<>();
 
         for(int i = 0; i < words.size(); i++){
-            repWord = words.get(i);
-            for(int j = 0; j<words.size(); j++){
-                if (repWord.equals(words.get(j))){
-                    count++;
-                    if(count >1) {
-                        repetition.put(repWord, count);
-                    }
-                }
-            }if(count == 1)words1.add(words.get(i));
-            count = 0;
+            repWord = repetition.get(words.get(i));
+            if(repWord == null){
+                repWord = 0;
+            }
+            repetition.put(words.get(i),repWord + 1);
         }
-        System.out.println("Повторяющиеся слова в массиве и количество повторений: " + repetition);
-        System.out.println("Массив слов без повторений: " + words1);
 
-    }
+        System.out.println("Список уникальных слов и количество повторений: ");
+        System.out.println(repetition);}
+
 }
