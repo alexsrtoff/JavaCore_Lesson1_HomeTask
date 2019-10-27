@@ -48,13 +48,23 @@ public class MainClass {
                         a2[i] =(float)(a2[i] * Math.sin(0.2f + (HALF+i+1) / 5) * Math.cos(0.2f + (HALF+i+1) / 5) * Math.cos(0.4f + (HALF+i+1) / 2));
                     }
                     System.arraycopy(a2, 0, arr, HALF, HALF);
-                    System.out.println(System.currentTimeMillis() - a);
                 }
             };
 
+
+
             thread1.start();
             thread2.start();
+
+            try {
+                thread1.join();
+                thread2.join();
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             System.out.println("Второй вариант: ");
+            System.out.println(System.currentTimeMillis() - a);
         }
     }
 
